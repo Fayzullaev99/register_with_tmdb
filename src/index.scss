@@ -5,31 +5,3 @@
     padding: 0;
     box-sizing: border-box;
 }
-
-body {
-    background: #141414;
-}
-
-::-webkit-scrollbar {
-    width: 5px;
-    background-color: black;
-}
-
-::-webkit-scrollbar-thumb {
-    height: 10px;
-    background: linear-gradient(to bottom, #149A03 25%, rgb(176, 240, 124) 50%, rgb(176, 240, 124) 50%, #149A03 75%);
-    border-radius: 5px;
-}
-
-a {
-    text-decoration: none;
-}
-ul{
-    list-style: none;
-}
-button{
-    border: none;
-}
-input{
-    outline: none;
-}

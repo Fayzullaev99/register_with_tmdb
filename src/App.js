@@ -1,32 +1,35 @@
-import React, { lazy, Suspense } from 'react'
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { ToastContainer } from 'react-toastify';
-import NoPage from './pages/noPage';
-import {ShowMovie,MovieDetails, Footer,Navbar,Loader } from "./components";
-import 'react-toastify/dist/ReactToastify.css';
-const Home = lazy(() => import('./pages/home'))
-const Movies = lazy(() => import('./pages/movies'))
-const Search = lazy(() => import('./pages/search'))
+import React, { useState } from 'react';
+import Login from './Login';
+import Logout from './Logout';
+import Session from './Session';
+
+const apiKey = '6631170ac0507794a62b3c544415862a';
+
 function App() {
+  const [sessionToken, setSessionToken] = useState(null);
+
+  const handleLogin = (token) => {
+    setSessionToken(token);
+  };
+  console.log(sessionToken);
+
+  const handleLogout = () => {
+    setSessionToken(null);
+  };
+
   return (
-    <Router>
-      <Navbar />
-        <Suspense fallback={<Loader />}>
-      <Routes>
-          <Route path="/" exact element={<Home />} />
-          <Route path="/movies" exact  element={<Movies />} />
-          <Route path="/popular" exact  element={<Movies />} />
-          <Route path="/search" exact  element={<Search />} />
-          <Route path="/movie/:id" element={<ShowMovie />} />
-          <Route path="/show/:id" element={<MovieDetails />} />
-          <Route path="/error" element={<NoPage />} />
-          <Route path="/*" element={<NoPage />} />
-      </Routes>
-        </Suspense>
-      <Footer />
-      <ToastContainer />
-    </Router>
+    <div className="App">
+      <h1>TMDb Authentication</h1>
+      {sessionToken ? (
+        <div>
+          <Session apiKey={apiKey} sessionToken={sessionToken} onLogout={handleLogout} />
+        </div>
+      ) : (
+        <Login apiKey={apiKey} onLogin={handleLogin} />
+      )}
+    </div>
   );
 }
 
 export default App;
+

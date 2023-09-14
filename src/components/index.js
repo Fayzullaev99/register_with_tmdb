@@ -1,7 +1,0 @@
-export {default as Navbar} from './navbar'
-export {default as Header} from './header'
-export {default as MovieCard} from './movieCard'
-export {default as MovieDetails} from './movieDetails'
-export {default as ShowMovie} from './showMovie'
-export {default as Loader} from './loader'
-export {default as Footer} from './footer'
